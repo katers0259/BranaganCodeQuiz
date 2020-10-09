@@ -10,12 +10,13 @@ h1 {
     font-family: fantasy;
 }
 
-.btn {
+.btn btn-secondary {
     font-size: 15px;
     font-family: fantasy;
     font-weight: lighter;
     color: #ffffff;
     margin-top: 20px;
+  
 }
 
 p {
@@ -27,4 +28,5 @@ p {
 
 #timeGauge {
     float: right;
+    margin-right: 50px;
 }

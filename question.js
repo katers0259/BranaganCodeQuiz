@@ -15,13 +15,14 @@
 
 var question = document.getElementById("questions");
 var startBtn = document.getElementById("startBtn");
+var highscoreBtn = document.getElementById("highscoreBtn")
 var btn1 =document.getElementById("btn1");
 var btn2 =document.getElementById("btn2");
 var btn3 =document.getElementById("btn3");
 var btn4 =document.getElementById("btn4");
 var invisible = document.getElementsByClassName("invisible");
 var timer = document.getElementById("timeGauge")
-var highScore = document.getElementById("highScore")
+
 var score = 0;
 
 const myQuestions = [
@@ -92,10 +93,10 @@ startBtn.addEventListener("click", function(){
 
 startBtn.onclick = function () {
   question.textContent = myQuestions[indexQuestions].question;
-  btn1.textContent = myQuestions[indexQuestions].a;
-  btn2.textContent = myQuestions[indexQuestions].b;
-  btn3.textContent = myQuestions[indexQuestions].c;
-  btn4.textContent = myQuestions[indexQuestions].d;
+  btn1.innerHTML = myQuestions[indexQuestions].a ;
+  btn2.innerHTML = myQuestions[indexQuestions].b ;
+  btn3.innerHTML = myQuestions[indexQuestions].c;
+  btn4.innerHTML = myQuestions[indexQuestions].d;
 
 };
 
