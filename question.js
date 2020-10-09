@@ -13,13 +13,16 @@
 //answering each question moves you to the next question until the end.
 //when you get to the end, make buttons invisible again. and displays this is the end.
 
-var question = document.getElementById("#questions");
-var start = document.getElementById("#startBtn");
-var btn1 =document.getElementById("#btn1");
-var btn2 =document.getElementById("#btn2");
-var btn3 =document.getElementById("#btn3");
-var btn4 =document.getElementById("#btn4");
-var invisible = document.getElementsByClassName(".invisible");
+var question = document.getElementById("questions");
+var startBtn = document.getElementById("startBtn");
+var btn1 =document.getElementById("btn1");
+var btn2 =document.getElementById("btn2");
+var btn3 =document.getElementById("btn3");
+var btn4 =document.getElementById("btn4");
+var invisible = document.getElementsByClassName("invisible");
+var timer = document.getElementById("timeGauge")
+var highScore = document.getElementById("highScore")
+var score = 0;
 
 const myQuestions = [
   {
@@ -46,7 +49,7 @@ const myQuestions = [
 
   {
     question: "Which on of these is not a language?",
-    answer: {
+    answer3: {
       a: "Javascript",
       b: "HTML",
       c: "css",
@@ -56,13 +59,45 @@ const myQuestions = [
 
   },
 ]
+var indexQuestions = myQuestions.length -1;
+var timeLeft = 60;
+var timeElapsed;
+var timer;
+//timer Functions
+function startTimer(){
+    timer = setInterval(tick, 1000);
+}
 
+//every second do this
+function tick(){
+    timeElapsed++;
+    console.log(timeElapsed)
+    //end timer
+    if(timeElapsed + 1 > timeLeft){
+        endGame();
+    }
+    updateTimer();
+}
+function updateTimer(){
+    var currentTime = timeLeft - timeElapsed
+    timeElapsed.textContent = currentTime;
+}
+var count = 60;
+startBtn.addEventListener("click", function(){
+  timer = setInterval(function() {
+  timeGauge.innerHTML = "Time: " + count--;
+  if (count === -1) clearInterval(timer);
+},1000);
+});
 
+startBtn.onclick = function () {
+  question.textContent = myQuestions[indexQuestions].question;
+  btn1.textContent = myQuestions[indexQuestions].a;
+  btn2.textContent = myQuestions[indexQuestions].b;
+  btn3.textContent = myQuestions[indexQuestions].c;
+  btn4.textContent = myQuestions[indexQuestions].d;
 
-
-
-
-
+};
 
 
 //adding the correct corelation of the answer
@@ -76,10 +111,3 @@ const myQuestions = [
 //when you finish you want to input your name with your score displayed.
 
 //when you refresh page we want the high score to stay in the highscores.
-
-
-
-
-
-
-
