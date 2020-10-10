@@ -46,7 +46,10 @@ body {
     margin-right: 20px;
 }
 
-
+#timeGauge {
+    float: right;
+    margin-right: 20px;
+}
 
 @media screen and (max-width: 768px) {
     .choice-container {
