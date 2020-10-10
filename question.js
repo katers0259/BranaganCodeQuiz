@@ -16,132 +16,85 @@
 
 
 
-const quesiton = document.querySelector("#question");
-const choices = Array.from(document.querySelector(".choice-text"));
-const score = document.querySelector("#score")
-let currentQuestion = {};
-let acceptingAnswers = true;
-
-let questionCounter = 0;
-let availableQuestions =[];
-
-
-
-var timer = document.getElementById("timeGauge")
+var question = document.querySelector("#question");
+var choices = document.querySelector(".choice-text");
+var scoreText = document.querySelector("#score")
+var currentQuestion = {};
+var acceptingAnswers = true;
+var score = 0;
+var questionCounter = 0;
+var availableQuestions =[];
 
 
 
-let myQuestions = [
+var timer = document.querySelector("timeGauge")
+
+
+
+var myQuestions = [
   {
     question: "Who Invented JavaScript?",
-     a: "Douglas Crockford",
-     b: "Beyonce",
-     c: "Brendan Eich",
-     d: "Obama",
+     choice1: "Douglas Crockford",
+     choice2: "Beyonce",
+     choice3: "Brendan Eich",
+     choice4: "Obama",
     answer: "c"
   },
   {
     question: "What does HTML stand for?",
  
-      a: "Hyper Text Markup Language",
-      b: "Happy Times Maybe Later",
-      c: "Cascading Style Sheets",
-      d: "Nodes",
+      choice1: "Hyper Text Markup Language",
+      choice2: "Happy Times Maybe Later",
+      choice3: "Cascading Style Sheets",
+      choice4: "Nodes",
     answer: "a"
   },
 
   {
     question: "Which on of these is not a language?",
    
-      a: "Javascript",
-      b: "HTML",
-      c: "css",
-      d: "browser",
+      choice1: "Javascript",
+      choice2: "HTML",
+      choice3: "css",
+      choice4: "browser",
      answer: "d"
 
   },
 ];
 
-const SCORE_POINTS = 50;
-const MAX_QUESTIONS =3;
 
-startGame = () => {
-  questionCounter = 0;
-  score = 0;
-  availableQuestions = [...myQuestions]
-  getNewQuestion()
-};
 
-getNewQuestion = () => {
-  if(availableQuestions.length === 0 || questionsCounter > MAX_QUESTIONS) {
-    localStorage.setItem("mostRecentScore, score")
+var indexQuestions = myQuestions.length -1;
+var timeLeft = 60;
+var timeElapsed;
+var timer;
 
-    return window.location.assign("/end.html")
-  }
-  questionCounter++;
-const questionsIndex = Math.floor(Math.random()*availableQuestions.length)
-currentQuestion = availableQuestions[questionsIndex];
-question.innerText = currentQuestion.question
 
-choices.forEach(choice=> {
-  const number = choice.dataset["number"];
-  choice.innerText = currentQuestion["choice" + number];
-});
-availableQuestions.splice[questionsIndex, 1];
-acceptingAnswers = true
-};
+// timer Functions
+function startTimer(){
+  timer = setInterval(tick, 1000);}
 
-choices.forEach(choice => {
-  choice.addEventListener("click", e =>{
-    if(!acceptingAnswers) return;
-    acceptingAnswers = false
-    const selectedChoise = e.target;
-    const selectdAnswer = selectedChoice.dataset["number"];
-
-    let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-
-    if (classToApply === "correct") {
-      incrementScore(SCORE_POINTS)
-    }
-    selectedChoice.parentElement.classList.add(classToApply);
-
-    setTimeout(() => {
-      selectedChoice.parentElement.classList.remove(classToApply);
-      getNewQuestion()
-    }, 50);
-  });
-});
-
-// var indexQuestions = myQuestions.length -1;
-// var timeLeft = 60;
-// var timeElapsed;
-// var timer;
-// //timer Functions
-// function startTimer(){
-//     timer = setInterval(tick, 1000);
-// }
-
-//every second do this
-// function tick(){
-//     timeElapsed++;
-//     console.log(timeElapsed)
-//     //end timer
-//     if(timeElapsed + 1 > timeLeft){
-//         endGame();
-//     }
-//     updateTimer();
-// }
-// function updateTimer(){
-//     var currentTime = timeLeft - timeElapsed
-//     timeElapsed.textContent = currentTime;
-// }
-// var count = 60;
-// choices.addEventListener("click", function() {
-//   timer = setInterval(function() {
-//   timeGauge.innerHTML = "Time: " + count--;
-//   if (count === -1) clearInterval(timer);
-// },1000);
-// });
+// //every second do this
+function tick(){
+   timeElapsed++;   
+   console.log(timeElapsed)
+// //     //end timer
+if(timeElapsed + -1 > timeLeft){
+    endGame();
+     }
+ updateTimer();
+}
+ function updateTimer(){
+    var currentTime = timeLeft - timeElapsed
+    timeElapsed.textContent = currentTime;
+}
+ var count = 60;
+ choices.addEventListener("click", function() {
+   timer = setInterval(function() {
+   timeGauge.innerHTML = "Time: " + count--;
+  if (count === -1) clearInterval(timer);
+ },1000);
+ });
 
 
 
