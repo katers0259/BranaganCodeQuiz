@@ -13,50 +13,51 @@
 //answering each question moves you to the next question until the end.
 //when you get to the end, make buttons invisible again. and displays this is the end.
 
-var question = document.getElementById("questions");
-var startBtn = document.getElementById("startBtn");
-var highscoreBtn = document.getElementById("highscoreBtn")
-var btn1 =document.getElementById("btn1");
-var btn2 =document.getElementById("btn2");
-var btn3 =document.getElementById("btn3");
-var btn4 =document.getElementById("btn4");
-var invisible = document.getElementsByClassName("invisible");
+
+
+
+const quesiton = document.querySelector("#question");
+const choices = Array.from(document.querySelector(".choice-text");
+const score = document.querySelector("#score")
+let currentQuestion = {};
+let acceptingAnswers = true;
+let score = 0;
+let questionCounter = 0;
+let availableQuestions =[];
+
+
+
 var timer = document.getElementById("timeGauge")
 
-var score = 0;
 
-const myQuestions = [
+
+let myQuestions = [
   {
     question: "Who Invented JavaScript?",
-    answer1: {
      a: "Douglas Crockford",
      b: "Beyonce",
      c: "Brendan Eich",
-     d: "Obama"
-    },
-    correctAnswer: "c"
+     d: "Obama",
+    answer: "c"
   },
   {
     question: "What does HTML stand for?",
-    answer2: {
+ 
       a: "Hyper Text Markup Language",
       b: "Happy Times Maybe Later",
       c: "Cascading Style Sheets",
-      d: "Nodes"
-
-    },
-    correctAnswer: "a"
+      d: "Nodes",
+    answer: "a"
   },
 
   {
     question: "Which on of these is not a language?",
-    answer3: {
+   
       a: "Javascript",
       b: "HTML",
       c: "css",
-      d: "browser"
-    },
-    CorrectAnswer: "d"
+      d: "browser",
+     answer: "d"
 
   },
 ]
@@ -91,14 +92,7 @@ startBtn.addEventListener("click", function(){
 },1000);
 });
 
-startBtn.onclick = function () {
-  question.textContent = myQuestions[indexQuestions].question;
-  btn1.innerHTML = myQuestions[indexQuestions].a ;
-  btn2.innerHTML = myQuestions[indexQuestions].b ;
-  btn3.innerHTML = myQuestions[indexQuestions].c;
-  btn4.innerHTML = myQuestions[indexQuestions].d;
 
-};
 
 
 //adding the correct corelation of the answer
