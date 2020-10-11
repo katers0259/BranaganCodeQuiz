@@ -23,8 +23,9 @@ var currentQuestion = {};
 var acceptingAnswers = true;
 var score = 0;
 var questionCounter = 0;
-var availableQuestions = []; 
+var checkedAnswer = document.querySelector('input[name="questions"]:checked').value;
 var startbtn = document.querySelector(".btn1");
+
 var count = 60;
 
 var questions = [
@@ -41,10 +42,10 @@ var questions = [
   {
     question: "What does HTML stand for?",
     choices: [
-    "Hyper Text Markup Language",
-    "Happy Times Maybe Later",
-     "Cascading Style Sheets",
-     "Nodes"
+      "Hyper Text Markup Language",
+      "Happy Times Maybe Later",
+      "Cascading Style Sheets",
+      "Nodes"
     ],
     answer: "a"
   },
@@ -52,11 +53,13 @@ var questions = [
   {
     question: "Which on of these is not a language?",
 
-    choice1: "Javascript",
-    choice2: "HTML",
-    choice3: "css",
-    choice4: "browser",
-    answer: "d"
+    choices: [
+      "Javascript",
+      "HTML",
+      "css",
+      "browser"
+    ],
+     answer: "d"
 
   },
 ];
@@ -78,7 +81,7 @@ function startTimer() {
   timer = setInterval(tick, 1000);
 }
 
-function questionDisplay () {
+function questionDisplay() {
 
 }
 
@@ -99,30 +102,58 @@ function updateTimer() {
 
 //choice.addEventListener("click", );
 
- function startCount() {
+function startCount() {
   timer = setInterval(function () {
     timeGauge.innerHTML = "Time: " + count--;
     if (count === -1) clearInterval(timer);
   }, 1000);
-  
+
 }
 
-function setChoices (questionNum) {
+function setChoices(questionNum) {
   questions[questionNum].choices.forEach(function (choice, i) {
     var selectorNum = i + 1;
-    var selection = document.querySelector('[data-number=' + '"' + selectorNum +'"]').innerHTML = choice
+    var selection = document.querySelector('[data-number=' + '"' + selectorNum + '"]').innerHTML = choice
     console.log(choice, selectorNum, selection)
   });
+ 
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+var submit = document.getElementById("submit")
+
+//console.log(submit)
+
+function submitAnswer() {
+
+
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function (event) {
   //do work
   startCount(60);
-setChoices(questionCounter);
+  setChoices(questionCounter);
+  submit.addEventListener('click', function() {
+    var checkedAnswer = document.querySelector('input[name="questions"]:checked').value
+    
+    console.log(questions[questionCounter].answer,checkedAnswer)
+    if(checkedAnswer === questions[questionCounter].answer) {
+     score++
+     document.getElementById("score").innerHTML = score
+      console.log("this is the score",score)
+    } else {
+      console.log("false")
+    }
 
-})
+    questionCounter++;
+    setChoices(questionCounter);
 
-//adding the correct corelation of the answer
+  });
+    
+  });
+
+//ading the correct corelation of the answer
 
 //adding a score based on what user clicks
 
