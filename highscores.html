@@ -10,8 +10,18 @@
 </head>
 <body>
     
-
-
+anything 
+<h1>Heres your Highscores</h1>
+<h1 class="scores">test</h1>
+<h1 > Please Enter your name</h1>   
+<form>
+    <input placeholder="your name here">
+</form>
     <script src="question.js"></script>
+  <script> document.addEventListener('DOMContentLoaded', function (event) {
+        document.querySelector(".scores").innerText = localStorage.getItem("highscore");
+   
+    });
+</script> 
 </body>
 </html>

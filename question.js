@@ -88,8 +88,7 @@ function questionDisplay() {
 // //every second do this
 function tick() {
   timeElapsed++;
-  //console.log(timeElapsed)
-  // //     //end timer
+
   if (timeElapsed + -1 > timeLeft) {
     endGame();
   }
@@ -113,20 +112,15 @@ function startCount() {
 function setChoices(questionNum) {
   questions[questionNum].choices.forEach(function (choice, i) {
     var selectorNum = i + 1;
-    var selection = document.querySelector('[data-number=' + '"' + selectorNum + '"]').innerHTML = choice
-    console.log(choice, selectorNum, selection)
+    document.querySelector('[data-number=' + '"' + selectorNum + '"]').innerHTML = choice
   });
  
 }
 
 var submit = document.getElementById("submit")
 
-//console.log(submit)
-
-function submitAnswer() {
 
 
-}
 
 
 
@@ -134,33 +128,40 @@ document.addEventListener("DOMContentLoaded", function (event) {
   //do work
   startCount(60);
   setChoices(questionCounter);
+  document.getElementById("question").innerHTML = questions[0].question;
+
   submit.addEventListener('click', function() {
-    var checkedAnswer = document.querySelector('input[name="questions"]:checked').value
-    
-    console.log(questions[questionCounter].answer,checkedAnswer)
+   
+   
+  
+
+    var checkedAnswer = document.querySelector('input[name="questions"]:checked').value;
+    var questionSelector = document.querySelector("#question");
+  
     if(checkedAnswer === questions[questionCounter].answer) {
-     score++
-     document.getElementById("score").innerHTML = score
-      console.log("this is the score",score)
-    } else {
-      console.log("false")
+      score++
+      document.getElementById("score").innerHTML = score
+
+     } else {
+
+       count = count - 10;
+     }
+
+     if(questionCounter === 2) {
+      localStorage.setItem("highscore", JSON.stringify(score))
+     window.location.href = "/highscores.html";
+     
     }
 
-    questionCounter++;
-    setChoices(questionCounter);
 
+    questionCounter++;
+  console.log(questionCounter)
+    setChoices(questionCounter);
+    questionSelector.innerHTML = questions[questionCounter].question;
+    
+      document.querySelector(".scores").innerText = localStorage.getItem("highscore");
+ 
+  
   });
     
   });
-
-//ading the correct corelation of the answer
-
-//adding a score based on what user clicks
-
-//when you start the quiz it starts the timer counting down
-
-//when you answer a question wrong it subtract time from the timer. 
-
-//when you finish you want to input your name with your score displayed.
-
-//when you refresh page we want the high score to stay in the highscores.
