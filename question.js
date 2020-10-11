@@ -63,9 +63,7 @@ var questions = [
 
   },
 ];
-// for (var i = 0; i < questions.length; i++) {
-//   choice +
-// }
+
 
 var indexQuestions = questions.length - 1;
 
@@ -151,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
       localStorage.setItem("highscore", JSON.stringify(score))
      window.location.href = "/highscores.html";
      
+     
     }
 
 
@@ -159,9 +158,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     setChoices(questionCounter);
     questionSelector.innerHTML = questions[questionCounter].question;
     
-      document.querySelector(".scores").innerText = localStorage.getItem("highscore");
- 
-  
   });
     
   });

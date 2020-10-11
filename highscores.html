@@ -1,27 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
 
     <title>Highscores</title>
 </head>
+
 <body>
-    
-anything 
-<h1>Heres your Highscores</h1>
-<h1 class="scores">test</h1>
-<h1 > Please Enter your name</h1>   
-<form>
-    <input placeholder="your name here">
-</form>
+
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h1>Heres your Highscores</h1>
+            <h1 class="scores" class="name">test</h1>
+            <h1> Please Enter your name</h1>
+            <form>
+                <div class="form-group">
+                  <label for="formGroupExampleInput"></label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
+                  <button type="submit" id="submit" class="btn btn-secondary" href="index.html">Submit</button>
+                </div>
+                
+        
+                
+              </form>
+        </div>
+    </div>
+
+
+
     <script src="question.js"></script>
-  <script> document.addEventListener('DOMContentLoaded', function (event) {
-        document.querySelector(".scores").innerText = localStorage.getItem("highscore");
-   
+    <script> document.addEventListener('DOMContentLoaded', function (event) {
+            document.querySelector(".scores").innerText = localStorage.getItem("highscore");
+
+           var form = document.querySelector("formGroupExample");
+           submit = document.getElementById("submit")
+           submit.addEventListener('click', function(event) {
+            localStorage.setItem("name", name);
+     window.location.href = "/highscores.html";
+
     });
-</script> 
+    document.querySelector(".name").innerText = localStorage.getItem("name", name);
+        });
+    </script>
 </body>
+
 </html>
